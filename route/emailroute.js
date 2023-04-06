@@ -55,6 +55,7 @@ AppRoute.post("/api/sendemail", async (req, res)=>{
     let {allSelectedEmail, allSelectedTodo} = req.body
     let emails =  allSelectedEmail.map((items)=>items.email)
     let messageId =  allSelectedTodo.map((items)=>items._id)
+         
           await  updateData.push({
             updateMany: {
                 filter: { email:emails },
@@ -72,39 +73,27 @@ AppRoute.post("/api/sendemail", async (req, res)=>{
               if (err) {
                   console.log("errorrrrrrrr : ",err)
               } else {
-                  console.log("result :   ****************** ",result)
-                  resolve(result)
-              }
+                 let sender = {email: 'egobakelvin@gmail.com',name: 'EGOBA'}
+                let receivers = [{email: emails}]
+                allSelectedTodo.map((items)=> 
+                    tranEmailApi.sendTransacEmail({
+                    sender,
+                    to: receivers,
+                    subject: 'TODO LIST',
+                    textContent: (items.tittle ,items.content),
+                    htmlContent: `<h1> todo </h1><a href="https://cules-coding.vercel.app/">Visit</a>`})
+                )
+
+                        res.send(result)
+                        }
           })
       
-   
-    console.log(updateData)
    
      //console.log(emails, "list of todo" , messageId )
 
     //handle send mail to subscriber with sendinblue api services
-   /* let sender = {email: 'egobakelvin@gmail.com',name: 'EGOBA',}
-    let receivers = [{email: emails}]
-    await allSelectedTodo.map((items)=> (
-        tranEmailApi.sendTransacEmail({
-        sender,
-        to: receivers,
-        subject: 'TODO LIST',
-        textContent: (items.tittle ,items.content),
-        htmlContent: `<h1> todo </h1><a href="https://cules-coding.vercel.app/">Visit</a>`})
-       ))*/
-    /*.then((respons)=>{
-        res.send(respons)
-
-    })
-
-    .catch((err)=>{
-        res.send(err)
-    })*/
-    res.send(updateData)
+   
         })
-    }else{
-       res.send("no data") 
     }
 })
 

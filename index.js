@@ -27,7 +27,7 @@ const emailRoute = require("./route/emailroute.js");
 //App setup
 mongoose.Promise = global.Promise;
 app.use(cors({
-    origin :"http://localhost:3000/"
+    origin :"*"
 }))
 app.use(bodyParser.json());
 

@@ -11,10 +11,9 @@ const EmailList = new Schema ({
         type: Date,
         default : Date.now
     },
-    messageId: { 
-            msg_id : {
-                String
-            }
+    messageId: {
+            
+               type : String
         },
 })
 
