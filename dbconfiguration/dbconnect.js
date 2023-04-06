@@ -1,4 +1,5 @@
+const MONGODB_URI = process.env.MONGODB_URI
 
 module.exports = {
-    DB: 'mongodb://localhost:27017/inventorydb'
+    DB: MONGODB_URI
 }
