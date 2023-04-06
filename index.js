@@ -12,7 +12,7 @@ const Sib = require('sib-api-v3-sdk')
 const client = Sib.ApiClient.instance
 const apiKey = client.authentications['api-key']
 apiKey.apiKey = process.env.API_KEY
-
+const PORT = process.env.PORT
 
 
 
@@ -42,7 +42,7 @@ mongoose.connect(config.DB, { useNewUrlParser:true}).then(
 
 
 // app listening to 8080 local host
-app.listen(8080, function () {
+app.listen(PORT, function () {
     console.log("the server is runing at port 8080");
 });
 
