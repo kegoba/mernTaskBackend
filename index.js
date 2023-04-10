@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors")
 const path = require('path');
+const PORT = process.env.PORT
 
 require("dotenv").config();
 
@@ -42,7 +43,7 @@ mongoose.connect(config.DB, { useNewUrlParser:true}).then(
 
 
 // app listening to 8080 local host
-app.listen(8080, function () {
+app.listen(PORT, function () {
     console.log("the server is runing at port 8080");
 });
 
